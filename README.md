@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 Algorithm Visualizer
 
-## Getting Started
+An interactive web-based **Sorting and Searching Algorithm Visualizer** built using **React** and **Tailwind CSS**. This project visually demonstrates how popular algorithms work using animated bars and step tracking — a perfect tool for learning, teaching, or portfolio presentation.
 
-First, run the development server:
+## 🚀 Features
+
+- 🔢 Visualize **Sorting Algorithms**: Bubble Sort, Insertion Sort, Merge Sort, Quick Sort  
+- 🔍 Visualize **Searching Algorithms**: Linear Search, Binary Search  
+- 🎨 Smooth animations using **Framer Motion**  
+- 📈 Live display of **steps** and **comparisons** for performance insight  
+- 🧹 Reset functionality to revert and rerun visualizations  
+- ⚙️ Algorithm dropdown selectors and array generation  
+- 💻 Responsive and modern UI with Tailwind CSS
+
+## 📸 Demo
+
+![Demo Screenshot](./screenshot.png)  
+*(Add a real screenshot or screen recording here for best presentation)*
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React (TypeScript)
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **State Management**: React Hooks
+
+## 📂 Project Structure
+
+/src
+├── components/
+│ ├── Visualizer.tsx # Main visualization logic
+│ ├── Controls.tsx # Dropdowns, buttons
+│ └── ... (additional UI components)
+├── pages/
+│ └── index.tsx # Main landing and control interface
+└── styles/
+└── globals.css
+
+
+## 🧠 Algorithms Implemented
+
+### 🔢 Sorting
+- Bubble Sort
+- Insertion Sort
+- Merge Sort
+- Quick Sort
+
+### 🔍 Searching
+- Linear Search
+- Binary Search  
+*(Binary Search auto-sorts the array before searching)*
+
+Each algorithm updates steps and comparisons, with visual highlights for comparisons and swaps.
+
+## 📦 Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/algorithm-visualizer.git
+cd algorithm-visualizer
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🧪 Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Select an algorithm type (Sorting or Searching).
+Choose a specific algorithm from the dropdown.
+Click Visualize to animate the steps.
+Use Reset to return to the original array state.
+Adjust the array size manually if needed.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📚 Learning Outcomes
+Strengthened understanding of algorithm logic through visuals
+Experience using React with TypeScript and Tailwind CSS
+Gained hands-on skills with Framer Motion for animations
+Improved component design and UI control logic
