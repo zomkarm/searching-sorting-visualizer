@@ -7,9 +7,10 @@ interface VisualizerProps {
   array: number[];
   algorithm: string;
   type: "sorting" | "searching";
+  speed: number;
 }
 
-export default function Visualizer({ array, algorithm, type }: VisualizerProps) {
+export default function Visualizer({ array, algorithm, type, speed }: VisualizerProps) {
   const [visualArray, setVisualArray] = useState<number[]>([]);
   const [activeIndices, setActiveIndices] = useState<number[]>([]);
   const [steps, setSteps] = useState(0);
@@ -41,9 +42,9 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
         }
       }
     }
-  }, [array, algorithm, type]);
+  }, [array, algorithm, type, speed]);
 
-  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, 1000-ms));
 
   async function runSearchingAnimation(algo: string, arr: number[], target: number) {
     runningRef.current = true;
@@ -75,7 +76,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
       setSteps((prev) => prev + 1);
       comps++;
       setComparisons(comps);
-      await delay(300);
+      await delay(speed);
       if (arr[i] === target) break;
     }
   }
@@ -91,7 +92,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
       setSteps((prev) => prev + 1);
       comps++;
       setComparisons(comps);
-      await delay(500);
+      await delay(speed);
 
       if (arr[mid] === target) break;
       else if (arr[mid] < target) left = mid + 1;
@@ -139,7 +140,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
         arr[j + 1] = arr[j];
         setVisualArray([...arr]);
         setActiveIndices([j, j + 1]);
-        await delay(300);
+        await delay(speed);
         j--;
       }
       if (j >= 0) {
@@ -150,7 +151,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
       arr[j + 1] = key;
       setVisualArray([...arr]);
       setActiveIndices([j + 1]);
-      await delay(300);
+      await delay(speed);
     }
   }
 
@@ -184,7 +185,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
         arr[k] = left[i] <= right[j] ? left[i++] : right[j++];
         setVisualArray([...arr]);
         setActiveIndices([k]);
-        await delay(300);
+        await delay(speed);
         k++;
       }
 
@@ -192,14 +193,14 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
         incrementSteps();
         arr[k++] = left[i++];
         setVisualArray([...arr]);
-        await delay(300);
+        await delay(speed);
       }
 
       while (j < right.length) {
         incrementSteps();
         arr[k++] = right[j++];
         setVisualArray([...arr]);
-        await delay(300);
+        await delay(speed);
       }
     }
 
@@ -221,17 +222,17 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
         setActiveIndices([j, high]);
         incrementSteps();
         incrementComps();
-        await delay(300);
+        await delay(speed);
         if (arr[j] < pivot) {
           i++;
           [arr[i], arr[j]] = [arr[j], arr[i]];
           setVisualArray([...arr]);
-          await delay(300);
+          await delay(speed);
         }
       }
       [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
       setVisualArray([...arr]);
-      await delay(300);
+      await delay(speed);
       return i + 1;
     }
 
@@ -250,12 +251,12 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
         setSteps((prev) => prev + 1);
         comps++;
         setComparisons(comps);
-        await delay(300);
+        await delay(speed);
 
         if (arr[j] > arr[j + 1]) {
           [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
           setVisualArray([...arr]);
-          await delay(300);
+          await delay(speed);
         }
       }
     }
@@ -274,7 +275,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
   return (
     <div className="w-full">
       {/* Bars container */}
-      <div className="flex justify-center items-end overflow-x-auto mt-8 mb-6 px-4 py-4 h-80 w-full bg-gray-700 rounded-lg shadow-inner">
+      <div className="w-full overflow-x-auto overflow-y-hidden flex items-end justify-center pt-24 gap-1 max-h-[320px] px-2">
         {visualArray.map((value, index) => (
           <motion.div
             key={index}
@@ -305,8 +306,8 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
             }}
             className="flex items-end justify-center rounded-md text-white font-semibold shadow-md mx-1 select-none"
             style={{
-              minWidth: "32px",
-              maxWidth: "48px",
+              minWidth: "8px",
+              height: `${scaledHeights[index]}px`,
               flexShrink: 0,
             }}
           >
@@ -316,7 +317,7 @@ export default function Visualizer({ array, algorithm, type }: VisualizerProps) 
       </div>
 
       {/* Stats */}
-      <div className="flex justify-center gap-8 text-yellow-400 font-semibold text-lg">
+      <div className="flex justify-center pt-4 gap-8 text-yellow-400 font-semibold text-lg">
         <div>Steps: {steps}</div>
         <div>Comparisons: {comparisons}</div>
       </div>

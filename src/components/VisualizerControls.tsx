@@ -13,7 +13,7 @@ const VisualizerControls: React.FC<Props> = ({ onVisualize, onReset, isRunning }
       <button
         onClick={onVisualize}
         disabled={isRunning}
-        className={`px-6 py-2 rounded-md font-semibold text-white transition
+        className={`px-6 py-2 rounded-md font-semibold text-white transition  border border-yellow-400
           ${isRunning ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-600"}
         `}
       >
