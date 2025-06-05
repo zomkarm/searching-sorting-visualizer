@@ -7,11 +7,11 @@ import Visualizer from "../components/Visualizer";
 
 export default function Home() {
   const [array, setArray] = useState<number[] | null>(null);
-  const [type, setType] = useState<string | null>(null);
+  const [type, setType] = useState<"sorting" | "searching">();
   const [speed, setSpeed] = useState(300);
   const [algorithm, setAlgorithm] = useState("");
 
-  const handleAlgorithmSelect = (type: string, algo: string, speed: number) => {
+  const handleAlgorithmSelect = (type: "sorting" | "searching", algo: string, speed: number) => {
     setType(type);
     setAlgorithm(algo);
     setSpeed(speed);
@@ -37,7 +37,7 @@ export default function Home() {
                 Selected: <span className="text-white">{type} - {algorithm}</span>
               </div>
 
-              <Visualizer array={array} algorithm={algorithm} type={type as "sorting" | "searching"} speed={speed}/>
+              <Visualizer array={array} algorithm={algorithm} type={type} speed={speed}/>
 
             </>
           )}
