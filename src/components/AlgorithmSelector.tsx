@@ -14,16 +14,20 @@ const searchingAlgorithms = ["Linear Search", "Binary Search"];
 export default function AlgorithmSelector({ onSelect }: AlgorithmSelectorProps) {
   const [type, setType] = useState<AlgorithmType>("sorting");
   const [algorithm, setAlgorithm] = useState("");
+  const [speed, setSpeed] = useState(300);
 
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newType = e.target.value as AlgorithmType;
+    if(newType === "sorting"){
+      alert("Select a algorithm !");
+    }
     setType(newType);
     setAlgorithm(""); // reset selected algorithm
   };
 
   const handleSubmit = () => {
     if (algorithm) {
-      onSelect(type, algorithm);
+      onSelect(type, algorithm, speed);
     }
   };
 
@@ -54,7 +58,11 @@ export default function AlgorithmSelector({ onSelect }: AlgorithmSelectorProps) 
         </select>
       </label>
 
-      <button onClick={handleSubmit} disabled={!algorithm}>Visualize</button>
+
+    <input type="range" min={50} max={1000} step={50} value={speed} onChange={(e) => setSpeed(Number(e.target.value))} />
+    <span>Speed: {speed}ms</span>
+
+      <button onClick={handleSubmit} className=" border border-yellow-400 rounded-lg m-2 p-2" disabled={!algorithm}>Visualize</button>
     </div>
   );
 }
