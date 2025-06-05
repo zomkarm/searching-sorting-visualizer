@@ -5,7 +5,7 @@ import React, { useState } from "react";
 type AlgorithmType = "sorting" | "searching";
 
 interface AlgorithmSelectorProps {
-  onSelect: (type: AlgorithmType, algorithm: string) => void;
+  onSelect: (type: AlgorithmType, algorithm: string, speed: number) => void;
 }
 
 const sortingAlgorithms = ["Bubble Sort", "Insertion Sort", "Merge Sort", "Quick Sort"];
